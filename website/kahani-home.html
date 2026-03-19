@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;600&amp;family=Inter:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "background": "#042418",
+              "on-background": "#accebc",
+              "primary": "#e9c349",
+              "on-primary": "#042418",
+              "secondary": "#accebc",
+              "surface": "#051710",
+              "on-surface": "#accebc",
+              "surface-container": "#02110b",
+              "surface-container-low": "#02110b",
+              "surface-container-high": "#082a1d",
+              "surface-container-highest": "#0b3525",
+              "outline-variant": "#accebc33",
+              "primary-container": "#e9c349",
+              "on-primary-container": "#042418",
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary/30 selection:text-on-background">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#042418]/70 backdrop-blur-xl border-b border-white/5">
+<div class="flex justify-between items-center px-12 py-8 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Kahani Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugUGZzcFgzPVpAV5n172Bh8oKAyzvTeS1uQ4YSR79WMQE0Yuhnucud2rSSFI0bMHYk7PRSL6rxNvmmNB4ZdlOeEK3h5DPLXP_z-zZvMx-7qwQ5XwFfPATrSaMpjiV2gBSTLcfpoyc8n9Eak3BA9AP55J7uPsZgPfeReUXA3d-uP1NESOuMtk2oqBmNx27zCtWjy2L2143vKKRvC-x_p9mDm9o9-RVYb-HYgP4LbJltIkGOEm-484Gkpox5MyAY2C_JXpdTSD6S6c5M"/>
+<span class="font-headline text-3xl tracking-tighter text-[#accebc]">Kahani</span>
+</div>
+<div class="hidden md:flex gap-12 items-center">
+<a class="text-[#accebc] hover:text-[#e9c349] transition-colors duration-300 font-sans tracking-widest uppercase text-xs" href="#">Home</a>
+<a class="text-[#e9c349] font-bold border-b border-[#e9c349] pb-1 font-sans tracking-widest uppercase text-xs" href="#">Menu</a>
+<a class="text-[#accebc] hover:text-[#e9c349] transition-colors duration-300 font-sans tracking-widest uppercase text-xs" href="#">Reservations</a>
+<a class="text-[#accebc] hover:text-[#e9c349] transition-colors duration-300 font-sans tracking-widest uppercase text-xs" href="#">Contact</a>
+</div>
+<button class="bg-[#e9c349] text-[#042418] px-8 py-3 font-sans text-xs tracking-widest uppercase rounded-lg scale-100 active:scale-95 transition-transform duration-200">
+            Book a Table
+        </button>
+</div>
+</nav>
+<main class="pt-48 pb-24">
+<!-- Hero Header -->
+<header class="max-w-7xl mx-auto px-8 mb-24 text-center">
+<h1 class="font-headline text-6xl md:text-8xl text-on-background tracking-tighter mb-6 italic">Il Menù</h1>
+<p class="font-body text-secondary text-lg max-w-2xl mx-auto opacity-80 leading-relaxed">
+            A narrative journey through the heart of Italy, curated by the chroniclers of the soil and heritage.
+        </p>
+</header>
+<!-- Antipasti Section -->
+<section class="max-w-7xl mx-auto px-8 mb-32">
+<div class="grid md:grid-cols-12 gap-16 items-start">
+<div class="md:col-span-5 relative">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg shadow-2xl shadow-black/40">
+<img class="w-full h-full object-cover" data-alt="Fresh burrata cheese with heirloom tomatoes and basil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDczmC1u0ov_bTusfh_QO18GvjlY5ElfClzIM41NDPu_O5HlhNcFk1XioINyrBsvoqAj2DNPC63M8LSMeAC_1ERYE_mx822_UjleDzBKd7My8zCY0YjCfxH_ur19uIQ1h2VGc4GY7H9f5wucjS4d5MHOZpynyyOrRvNK68mFCggbkBQEi28B5vJq0Ix2wTqvJImghCUI_qJ8zPGcH3-00_jP8KixBJnZ1FHRi3BK41_Sm82Pe0dA1QlZJEKMYGOtnfzXJCnqHD5rP2S"/>
+</div>
+<div class="absolute -bottom-8 -right-8 p-10 bg-surface-container-high/80 backdrop-blur-2xl rounded-lg hidden md:block border border-white/5">
+<span class="font-headline text-3xl italic text-primary">Chef's Signature</span>
+</div>
+</div>
+<div class="md:col-span-7 flex flex-col justify-center h-full">
+<div class="mb-12">
+<span class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-4 block">Chapter I</span>
+<h2 class="font-headline text-5xl text-on-background mb-4">Antipasti</h2>
+<div class="w-24 h-px bg-outline-variant"></div>
+</div>
+<div class="space-y-12">
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-2">
+<h3 class="font-headline text-2xl group-hover:text-primary transition-colors">Burrata e Pomodori</h3>
+<span class="font-label text-sm tracking-widest text-secondary opacity-60">24</span>
+</div>
+<p class="font-body text-secondary/70 leading-relaxed max-w-lg">Puglian burrata, heritage tomatoes, wild basil oil, and charcoal-infused sea salt.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-2">
+<h3 class="font-headline text-2xl group-hover:text-primary transition-colors">Carpaccio di Polpo</h3>
+<span class="font-label text-sm tracking-widest text-secondary opacity-60">28</span>
+</div>
+<p class="font-body text-secondary/70 leading-relaxed max-w-lg">Thinly sliced octopus, lemon zest, caper berries, and Sicilian olive oil pearls.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-2">
+<h3 class="font-headline text-2xl group-hover:text-primary transition-colors">Fiori di Zucca</h3>
+<span class="font-label text-sm tracking-widest text-secondary opacity-60">22</span>
+</div>
+<p class="font-body text-secondary/70 leading-relaxed max-w-lg">Tempura zucchini blossoms filled with truffle-infused ricotta and local honey drizzle.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Primi Section -->
+<section class="bg-surface-container py-32 mb-32 border-y border-white/5">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20">
+<span class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-4 block">Chapter II</span>
+<h2 class="font-headline text-5xl text-on-background">Primi Piatti</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Item 1 -->
+<div class="bg-surface-container-high p-10 rounded-lg flex flex-col justify-between group transition-all hover:bg-surface-container-highest border border-white/5">
+<div>
+<div class="flex justify-between mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-label text-sm text-secondary">32</span>
+</div>
+<h3 class="font-headline text-2xl mb-4 group-hover:italic transition-all">Pappardelle al Cinghiale</h3>
+<p class="font-body text-secondary/70 text-sm leading-relaxed mb-8">Hand-cut pasta, slow-braised wild boar ragù, 36-month aged Parmigiano Reggiano.</p>
+</div>
+<button class="font-label text-[10px] tracking-widest uppercase text-primary flex items-center gap-2 group-hover:gap-4 transition-all">
+                        Details <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Item 2 (Featured Image) -->
+<div class="md:row-span-2 relative group overflow-hidden rounded-lg shadow-2xl border border-white/5">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Gourmet pasta dish with herbs and sauce" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3OrKIYcVGu6wdyvemwi8UGVGqQKu3UrS52FOXdXgeKv-kHqEgePW4aZBkvb4mOMOrwlnstJz1aiueMiTy5o7bQuHLQ9AA9IukIl833mEQgcjBhfWd0PMlZ-SZz1AwinjRYeM_7yHR1a4NbOp9RrEj_b_zsxOsxFZ959xnpvZwXyraPpCi358PfI65P3O63mYpUjUOHICVfLH_ny0V1fdftuKNGQte69O4PhFe1uvT9_E0qjtzGTd3sn687MQ16aspHEbobwsV1af7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10">
+<h3 class="font-headline text-3xl text-[#accebc] mb-2 italic">Risotto al Nero</h3>
+<p class="font-body text-[#accebc]/70 text-sm max-w-xs">Squid ink risotto, gold leaf, and Hokkaido scallops.</p>
+<span class="font-label text-sm text-[#e9c349] mt-4 block">45</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-high p-10 rounded-lg flex flex-col justify-between group transition-all hover:bg-surface-container-highest border border-white/5">
+<div>
+<div class="flex justify-between mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="flare">flare</span>
+<span class="font-label text-sm text-secondary">38</span>
+</div>
+<h3 class="font-headline text-2xl mb-4 group-hover:italic transition-all">Gnocchi alla Romana</h3>
+<p class="font-body text-secondary/70 text-sm leading-relaxed mb-8">Semolina gnocchi, sage-infused brown butter, and crispy pancetta dust.</p>
+</div>
+<button class="font-label text-[10px] tracking-widest uppercase text-primary flex items-center gap-2 group-hover:gap-4 transition-all">
+                        Details <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Item 4 -->
+<div class="bg-surface-container-high p-10 rounded-lg flex flex-col justify-between group transition-all hover:bg-surface-container-highest border border-white/5">
+<div>
+<div class="flex justify-between mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="eco">eco</span>
+<span class="font-label text-sm text-secondary">29</span>
+</div>
+<h3 class="font-headline text-2xl mb-4 group-hover:italic transition-all">Ravioli di Zucca</h3>
+<p class="font-body text-secondary/70 text-sm leading-relaxed mb-8">Butternut squash, amaretti crumbs, and sage-hazelnut emulsion.</p>
+</div>
+<button class="font-label text-[10px] tracking-widest uppercase text-primary flex items-center gap-2 group-hover:gap-4 transition-all">
+                        Details <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Item 5 -->
+<div class="bg-surface-container-high p-10 rounded-lg flex flex-col justify-between group transition-all hover:bg-surface-container-highest border border-white/5">
+<div>
+<div class="flex justify-between mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="waves">waves</span>
+<span class="font-label text-sm text-secondary">42</span>
+</div>
+<h3 class="font-headline text-2xl mb-4 group-hover:italic transition-all">Tagliolini al Tartufo</h3>
+<p class="font-body text-secondary/70 text-sm leading-relaxed mb-8">House-made fine pasta, shavings of seasonal black truffle, and fontina fonduta.</p>
+</div>
+<button class="font-label text-[10px] tracking-widest uppercase text-primary flex items-center gap-2 group-hover:gap-4 transition-all">
+                        Details <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondi Section -->
+<section class="max-w-5xl mx-auto px-8 mb-32">
+<div class="text-left mb-20 border-l-4 border-primary pl-10">
+<span class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-4 block">Chapter III</span>
+<h2 class="font-headline text-5xl text-on-background">Secondi</h2>
+</div>
+<div class="space-y-16">
+<article class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-8 border-b border-outline-variant">
+<div class="max-w-xl">
+<h3 class="font-headline text-3xl mb-2">Costolette d’Agnello</h3>
+<p class="font-body text-secondary/70">Herb-crusted lamb chops, pistachios, roasted fennel, and mint reduction.</p>
+</div>
+<div class="flex items-center gap-8">
+<span class="font-label text-xl tracking-widest text-primary">54</span>
+<span class="material-symbols-outlined opacity-20" data-icon="keyboard_double_arrow_right">keyboard_double_arrow_right</span>
+</div>
+</article>
+<article class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-8 border-b border-outline-variant">
+<div class="max-w-xl">
+<h3 class="font-headline text-3xl mb-2">Branzino al Sale</h3>
+<p class="font-body text-secondary/70">Salt-baked sea bass, lemon-thyme salsa verde, and seasonal greens.</p>
+</div>
+<div class="flex items-center gap-8">
+<span class="font-label text-xl tracking-widest text-primary">48</span>
+<span class="material-symbols-outlined opacity-20" data-icon="keyboard_double_arrow_right">keyboard_double_arrow_right</span>
+</div>
+</article>
+<article class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-8 border-b border-outline-variant">
+<div class="max-w-xl">
+<h3 class="font-headline text-3xl mb-2">Tagliata di Manzo</h3>
+<p class="font-body text-secondary/70">Wagyu beef strip loin, wild arugula, aged balsamic, and parmigiano shards.</p>
+</div>
+<div class="flex items-center gap-8">
+<span class="font-label text-xl tracking-widest text-primary">68</span>
+<span class="material-symbols-outlined opacity-20" data-icon="keyboard_double_arrow_right">keyboard_double_arrow_right</span>
+</div>
+</article>
+</div>
+</section>
+<!-- Dolci Section -->
+<section class="max-w-7xl mx-auto px-8 mb-32">
+<div class="text-right mb-20">
+<span class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-4 block">Chapter IV</span>
+<h2 class="font-headline text-5xl text-on-background italic">I Dolci</h2>
+</div>
+<div class="grid md:grid-cols-2 gap-12">
+<div class="relative aspect-video rounded-lg overflow-hidden group border border-white/5">
+<img class="w-full h-full object-cover" data-alt="Luxurious tiramisu dessert in a glass" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPE9hAmxb-Zlh0me5jI844FDDsKXuSEZXpOZSP6Ri0oAOKyOHT8m4hQEHnxvfK4qxaRpNZYe5xDE-DFg--yw4CspJ6kTNc75h1uovhIezdoPKhcLyU-epX9Nq9LEMCoomMzA5ICZkq_XF47GYCqDdZ8nFYYgxPtMX0ARXU_FaSYjHKO1qgPjt6KtrcYom0phLOm5DBhhyExDjnVmfqquk-svr9K6O9KjsDO8xldlRDWw4YWRRESTNVKTCMCvU-a5LpM_ekSAu1ZrZt"/>
+<div class="absolute inset-0 bg-background/40 group-hover:bg-background/60 transition-all duration-500"></div>
+<div class="absolute inset-8 border border-white/10 p-8 flex flex-col justify-end backdrop-blur-md bg-surface-container/60 rounded-lg">
+<h3 class="font-headline text-3xl text-[#accebc] mb-2">Kahani Tiramisu</h3>
+<p class="font-body text-[#accebc]/70 text-sm mb-4">Espresso-soaked savoiardi, mascarpone mousse, and gold-dusted cocoa.</p>
+<span class="font-label text-lg text-[#e9c349]">18</span>
+</div>
+</div>
+<div class="relative aspect-video rounded-lg overflow-hidden group border border-white/5">
+<img class="w-full h-full object-cover" data-alt="Panna cotta with berry coulis and mint" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-JRamkg6f6eALwrqGsydsL0tPiA4mQvPDESdbOMYjC_eaJpFGAvwfzSjitH2QGdBMjPcYYDIbpyriwSJWrX2YbRQpv0AWmzPksYEop7TrDRKt4YZTYSN5Tx-BeLeTNx51b6vlU78fbzpifO4fEZueO_nbrUEIRQJSi5eaFdm79dEeb8LSuwQ-JX0ptgDhn-yPTw7hDlT6uiY_gb3EFsrOPcsrddwYIqn6Z_uv00OHVzXulQ_6SbU0gVTXQDKat7hoG8-u9KLk8BSI"/>
+<div class="absolute inset-0 bg-background/40 group-hover:bg-background/60 transition-all duration-500"></div>
+<div class="absolute inset-8 border border-white/10 p-8 flex flex-col justify-end backdrop-blur-md bg-surface-container/60 rounded-lg">
+<h3 class="font-headline text-3xl text-[#accebc] mb-2">Panna Cotta al Miele</h3>
+<p class="font-body text-[#accebc]/70 text-sm mb-4">Vanilla bean panna cotta, chestnut honey, and roasted almonds.</p>
+<span class="font-label text-lg text-[#e9c349]">16</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-5xl mx-auto px-8 text-center mb-32">
+<div class="bg-surface-container p-20 rounded-lg border border-white/5 shadow-2xl">
+<h2 class="font-headline text-4xl mb-8">Begin Your Story</h2>
+<p class="font-body text-secondary/70 mb-12 max-w-xl mx-auto">Reservations are curated according to seasonal cycles. We recommend booking two weeks in advance for narrative weekend services.</p>
+<button class="bg-[#e9c349] text-[#042418] px-12 py-5 font-sans text-xs tracking-[0.2em] uppercase rounded-lg hover:opacity-90 transition-all shadow-xl shadow-black/20">
+                Reserve Your Journey
+            </button>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-[#02110b] w-full py-16 px-12 border-t border-[#accebc]/10">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-4">
+<img alt="Kahani Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ugUGZzcFgzPVpAV5n172Bh8oKAyzvTeS1uQ4YSR79WMQE0Yuhnucud2rSSFI0bMHYk7PRSL6rxNvmmNB4ZdlOeEK3h5DPLXP_z-zZvMx-7qwQ5XwFfPATrSaMpjiV2gBSTLcfpoyc8n9Eak3BA9AP55J7uPsZgPfeReUXA3d-uP1NESOuMtk2oqBmNx27zCtWjy2L2143vKKRvC-x_p9mDm9o9-RVYb-HYgP4LbJltIkGOEm-484Gkpox5MyAY2C_JXpdTSD6S6c5M"/>
+<span class="font-headline text-xl text-[#accebc]">Kahani</span>
+</div>
+<p class="text-[#accebc]/60 font-sans text-[10px] tracking-[0.1rem] uppercase">© 2024 Kahani Signature Editorial. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-[#accebc]/60 hover:text-[#e9c349] transition-colors font-sans text-[10px] tracking-[0.1rem] uppercase" href="#">Privacy Policy</a>
+<a class="text-[#accebc]/60 hover:text-[#e9c349] transition-colors font-sans text-[10px] tracking-[0.1rem] uppercase" href="#">Terms of Service</a>
+<a class="text-[#accebc]/60 hover:text-[#e9c349] transition-colors font-sans text-[10px] tracking-[0.1rem] uppercase" href="#">Sustainability</a>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-[#e9c349] opacity-100 hover:opacity-80 transition-opacity cursor-pointer" data-icon="stars">stars</span>
+<span class="material-symbols-outlined text-[#e9c349] opacity-100 hover:opacity-80 transition-opacity cursor-pointer" data-icon="wine_bar">wine_bar</span>
+<span class="material-symbols-outlined text-[#e9c349] opacity-100 hover:opacity-80 transition-opacity cursor-pointer" data-icon="history_edu">history_edu</span>
+</div>
+</div>
+</footer>
+</body></html>

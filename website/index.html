@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kahani | Signature Editorial Restaurant</title>
+    <meta name="description" content="Kahani - A culinary journey through forgotten recipes of the East, curated for the modern connoisseur.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background": "#051710",
+                        "surface": "#042418",
+                        "surface-low": "#02110b",
+                        "surface-high": "#0b3525",
+                        "surface-container": "#11231c",
+                        "surface-container-high": "#1c2e26",
+                        "surface-container-highest": "#263831",
+                        "primary": "#accebc",
+                        "primary-fixed": "#c8ebd7",
+                        "secondary": "#e9c349",
+                        "secondary-container": "#af8d11",
+                        "on-background": "#d2e7dc",
+                        "on-surface": "#d2e7dc",
+                        "on-surface-variant": "#c1c8c2",
+                        "on-primary": "#183629",
+                        "on-secondary": "#3c2f00",
+                        "outline": "#8b928d",
+                        "outline-variant": "#424844",
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Inter", "Manrope", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-background text-on-surface font-body antialiased selection:bg-secondary selection:text-on-secondary">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500">
+        <div class="flex justify-between items-center px-6 md:px-10 py-6 max-w-screen-2xl mx-auto">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <span class="text-2xl font-headline italic text-primary tracking-widest group-hover:text-secondary transition-colors duration-300">Kahani</span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-12">
+                <a href="index.html" class="nav-link text-secondary font-headline border-b-2 border-secondary pb-1 active">Home</a>
+                <a href="menu.html" class="nav-link text-on-surface/60 font-label uppercase tracking-widest text-xs hover:text-secondary transition-all duration-300">Menu</a>
+                <a href="reservations.html" class="nav-link text-on-surface/60 font-label uppercase tracking-widest text-xs hover:text-secondary transition-all duration-300">Reservations</a>
+                <a href="contact.html" class="nav-link text-on-surface/60 font-label uppercase tracking-widest text-xs hover:text-secondary transition-all duration-300">Contact</a>
+            </div>
+            
+            <!-- CTA Button -->
+            <a href="reservations.html" class="hidden md:block bg-secondary-container text-on-secondary-container px-8 py-3 font-label uppercase tracking-widest text-xs hover:bg-secondary hover:text-on-secondary transition-all duration-300">
+                Book a Table
+            </a>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-on-surface p-2" aria-label="Toggle menu">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-xl border-t border-outline-variant/20">
+            <div class="flex flex-col px-6 py-8 space-y-6">
+                <a href="index.html" class="text-secondary font-headline text-lg">Home</a>
+                <a href="menu.html" class="text-on-surface/80 font-label uppercase tracking-widest text-sm hover:text-secondary transition-colors">Menu</a>
+                <a href="reservations.html" class="text-on-surface/80 font-label uppercase tracking-widest text-sm hover:text-secondary transition-colors">Reservations</a>
+                <a href="contact.html" class="text-on-surface/80 font-label uppercase tracking-widest text-sm hover:text-secondary transition-colors">Contact</a>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-8 py-4 font-label uppercase tracking-widest text-sm text-center mt-4">
+                    Book a Table
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img 
+                    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80" 
+                    alt="Atmospheric dimly lit restaurant interior" 
+                    class="w-full h-full object-cover opacity-40"
+                >
+                <div class="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background"></div>
+            </div>
+            
+            <!-- Hero Content -->
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
+                <span class="font-label uppercase tracking-[0.4em] text-secondary text-sm mb-6 block animate-fade-in">Est. 1994</span>
+                <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight tracking-tighter animate-slide-up">
+                    The Art of <br><span class="italic text-primary">Storytelling</span>
+                </h1>
+                <p class="font-body text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-12 font-light leading-relaxed animate-fade-in-delay">
+                    A culinary journey through the forgotten recipes of the East, curated for the modern connoisseur.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-slide-up-delay">
+                    <a href="reservations.html" class="bg-secondary text-on-secondary px-10 py-4 font-label uppercase tracking-widest text-sm hover:scale-105 transition-transform duration-300 shadow-lg shadow-secondary/20">
+                        Book a Table
+                    </a>
+                    <a href="menu.html" class="border border-outline-variant text-on-surface px-10 py-4 font-label uppercase tracking-widest text-sm hover:bg-surface-container transition-colors duration-300">
+                        Explore Menu
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <span class="material-symbols-outlined text-on-surface/40 text-2xl">expand_more</span>
+            </div>
+        </section>
+
+        <!-- Our Story Section -->
+        <section class="py-24 md:py-32 px-6 md:px-10 bg-surface-container">
+            <div class="max-w-screen-xl mx-auto">
+                <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    <!-- Section Header -->
+                    <div class="lg:col-span-5">
+                        <span class="font-label uppercase tracking-[0.2em] text-secondary text-xs mb-4 block">Chapter I</span>
+                        <h2 class="font-headline text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight">Beyond the <br>Kitchen Walls</h2>
+                        <div class="w-20 h-px bg-secondary/30 mb-8"></div>
+                    </div>
+                    
+                    <!-- Story Content -->
+                    <div class="lg:col-span-7">
+                        <div class="editorial-text font-body text-on-surface-variant leading-loose space-y-6 text-lg font-light">
+                            <p>
+                                Kahani was born from a simple realization: that every dish carries the weight of a thousand years, a whisper of a forgotten spice trade, and the warmth of a grandmother's hearth.
+                            </p>
+                            <p>
+                                We don't just serve food; we archive heritage. Our chefs travel to remote provinces, documenting techniques that have never been written down, only passed through touch and taste.
+                            </p>
+                            <p>
+                                Every ingredient is sourced with intentionality—from the saffron fields of the high plateaus to the coastal salts of the southern tip. At Kahani, your table is a manuscript, and every course is a new page.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image Gallery -->
+                <div class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div class="aspect-[4/5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 group">
+                        <img 
+                            src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=600&q=80" 
+                            alt="Chef preparing intricate dish" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        >
+                    </div>
+                    <div class="aspect-[4/5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 group md:mt-12">
+                        <img 
+                            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" 
+                            alt="Artistic plating of heritage food" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        >
+                    </div>
+                    <div class="aspect-[4/5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 group">
+                        <img 
+                            src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80" 
+                            alt="Vintage cooking utensils" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signature Dishes Section -->
+        <section class="py-24 md:py-32 px-6 md:px-10 bg-background">
+            <div class="max-w-screen-xl mx-auto">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-6">
+                    <div>
+                        <span class="font-label uppercase tracking-[0.2em] text-secondary text-xs mb-4 block">Selected Works</span>
+                        <h2 class="font-headline text-4xl md:text-5xl lg:text-6xl">Signature Dishes</h2>
+                    </div>
+                    <a href="menu.html" class="font-label uppercase tracking-widest text-xs text-primary border-b border-primary/30 pb-2 hover:text-secondary hover:border-secondary transition-colors duration-300">
+                        View Full Menu
+                    </a>
+                </div>
+                
+                <!-- Dishes Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                    <!-- Dish Card 1 -->
+                    <article class="group cursor-pointer">
+                        <div class="relative overflow-hidden mb-6 aspect-square">
+                            <img 
+                                src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" 
+                                alt="Spiced Lamb Shank" 
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            >
+                            <div class="absolute top-4 right-4 bg-secondary text-on-secondary text-[10px] font-label uppercase tracking-tighter px-3 py-1">
+                                Chef's Choice
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-headline text-2xl group-hover:text-secondary transition-colors">The Silk Road Lamb</h3>
+                            <span class="font-headline text-secondary text-xl">$42</span>
+                        </div>
+                        <p class="font-body text-on-surface-variant text-sm font-light leading-relaxed">
+                            12-hour slow-braised shank, infused with star anise, cassia bark, and 24-karat gold leaf garnish.
+                        </p>
+                    </article>
+                    
+                    <!-- Dish Card 2 -->
+                    <article class="group cursor-pointer">
+                        <div class="relative overflow-hidden mb-6 aspect-square">
+                            <img 
+                                src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80" 
+                                alt="Saffron Risotto" 
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            >
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-headline text-2xl group-hover:text-secondary transition-colors">High Plateau Saffron</h3>
+                            <span class="font-headline text-secondary text-xl">$38</span>
+                        </div>
+                        <p class="font-body text-on-surface-variant text-sm font-light leading-relaxed">
+                            Hand-picked Grade A saffron, organic arborio, finished with truffle-infused bone marrow butter.
+                        </p>
+                    </article>
+                    
+                    <!-- Dish Card 3 -->
+                    <article class="group cursor-pointer">
+                        <div class="relative overflow-hidden mb-6 aspect-square">
+                            <img 
+                                src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80" 
+                                alt="Coastal Black Bass" 
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            >
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-headline text-2xl group-hover:text-secondary transition-colors">Coastal Black Bass</h3>
+                            <span class="font-headline text-secondary text-xl">$45</span>
+                        </div>
+                        <p class="font-body text-on-surface-variant text-sm font-light leading-relaxed">
+                            Pan-seared wild bass, fermented chili emulsion, served over a bed of heritage pearl millet.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience/Atmosphere Section -->
+        <section class="py-24 md:py-32 px-6 md:px-10 bg-surface-container-high relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <img 
+                    src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1920&q=80" 
+                    alt="Restaurant ambiance" 
+                    class="w-full h-full object-cover"
+                >
+            </div>
+            <div class="max-w-screen-xl mx-auto relative z-10">
+                <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <div>
+                        <span class="font-label uppercase tracking-[0.2em] text-secondary text-xs mb-4 block">The Experience</span>
+                        <h2 class="font-headline text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight">An Evening at <span class="italic text-primary">Kahani</span></h2>
+                        <div class="space-y-6 font-body text-on-surface-variant leading-relaxed">
+                            <p>
+                                Step into a world where time slows down. Our dining room is designed to evoke the feeling of a private library—warm lighting, rich textures, and an atmosphere that invites conversation.
+                            </p>
+                            <p>
+                                Each table is set with intention: hand-thrown ceramics, vintage silverware, and linens woven by artisans. The soundtrack is curated nightly, featuring rare vinyl recordings from the regions that inspire our menu.
+                            </p>
+                        </div>
+                        <div class="mt-10 flex flex-wrap gap-8">
+                            <div class="text-center">
+                                <span class="font-headline text-3xl text-secondary block">12</span>
+                                <span class="font-label uppercase tracking-widest text-[10px] text-on-surface-variant">Course Journey</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="font-headline text-3xl text-secondary block">48</span>
+                                <span class="font-label uppercase tracking-widest text-[10px] text-on-surface-variant">Wine Selections</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="font-headline text-3xl text-secondary block">3</span>
+                                <span class="font-label uppercase tracking-widest text-[10px] text-on-surface-variant">Michelin Stars</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?w=800&q=80" 
+                            alt="Elegant dining experience" 
+                            class="w-full aspect-[3/4] object-cover rounded-lg shadow-2xl"
+                        >
+                        <div class="absolute -bottom-6 -left-6 bg-surface-container p-6 md:p-8 rounded-lg shadow-xl hidden md:block">
+                            <p class="font-headline text-lg italic text-primary">"A meal that tells a story"</p>
+                            <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-2">— Michelin Guide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservations CTA Section -->
+        <section class="py-24 md:py-32 px-6 md:px-10 bg-surface-container-highest">
+            <div class="max-w-screen-xl mx-auto flex flex-col items-center text-center">
+                <span class="font-label uppercase tracking-[0.2em] text-secondary text-xs mb-4 block">Secure Your Seat</span>
+                <h2 class="font-headline text-4xl md:text-5xl lg:text-7xl mb-8">Begin Your Journey</h2>
+                <p class="font-body text-on-surface-variant max-w-2xl mx-auto mb-12 leading-relaxed">
+                    Reservations are curated according to seasonal cycles. We recommend booking two weeks in advance for narrative weekend services.
+                </p>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-12 py-5 font-label uppercase tracking-widest text-sm hover:scale-105 transition-transform duration-300 shadow-lg shadow-secondary/20">
+                    Make a Reservation
+                </a>
+                <p class="mt-12 font-body text-on-surface-variant/60 text-xs uppercase tracking-widest">
+                    For groups of 8 or more, please call us directly at <span class="text-secondary">+1 (555) KAHANI-0</span>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-low w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center py-12 md:py-16 px-6 md:px-12 border-t border-on-surface/10 max-w-screen-2xl mx-auto">
+            <div class="mb-8 md:mb-0 text-center md:text-left">
+                <span class="font-headline text-secondary text-2xl italic tracking-widest">Kahani</span>
+                <p class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface mt-2 opacity-80">Signature Editorial</p>
+            </div>
+            <div class="flex flex-col items-center md:items-end">
+                <div class="flex gap-8 mb-6">
+                    <a href="#" class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface/60 hover:text-primary transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface/60 hover:text-primary transition-colors duration-300">Press</a>
+                    <a href="#" class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface/60 hover:text-primary transition-colors duration-300">Accessibility</a>
+                </div>
+                <p class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface/40 text-center md:text-right">
+                    © 2024 Kahani Signature Editorial. The art of storytelling through cuisine.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
