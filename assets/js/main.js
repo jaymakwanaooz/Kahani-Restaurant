@@ -8,7 +8,6 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  initScrollProgressBar();
   initPageVisibilityAPI();
   initEnhancedFormValidation();
   initPageLoader();
@@ -25,24 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroAnimations();
 });
 
-// ============================================
-// Scroll Progress Bar
-// ============================================
-
-function initScrollProgressBar() {
-  const progressBar = document.createElement('div');
-  progressBar.className = 'scroll-progress-bar';
-  document.body.appendChild(progressBar);
-  
-  const scrollProgress = throttle(() => {
-    const scrolled = window.pageYOffset;
-    const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrolled / scrollMax) * 100;
-    progressBar.style.width = scrollPercent + '%';
-  }, 16); // ~60fps
-  
-  window.addEventListener('scroll', scrollProgress, { passive: true });
-}
 
 // ============================================
 // Page Visibility API
@@ -78,6 +59,9 @@ function initEnhancedFormValidation() {
     const formInputs = form.querySelectorAll('input, textarea');
     
     formInputs.forEach(input => {
+      // Skip radio and checkbox inputs to not break custom UI (peer-checked)
+      if (input.type === 'radio' || input.type === 'checkbox') return;
+      
       // Add form-group wrapper if not exists
       if (!input.parentElement.classList.contains('form-group')) {
         const wrapper = document.createElement('div');
@@ -108,36 +92,68 @@ function initEnhancedFormValidation() {
   });
 }
 
+// Enhanced email and phone validation
 function validateField(input) {
   const formGroup = input.parentElement;
   const isRequired = input.hasAttribute('required');
   const isEmpty = !input.value.trim();
-  
+  const type = input.getAttribute('type');
+  const id = input.getAttribute('id');
+
   // Remove existing message elements
   const existingError = formGroup.querySelector('.form-error-message');
   const existingSuccess = formGroup.querySelector('.form-success-message');
   if (existingError) existingError.remove();
   if (existingSuccess) existingSuccess.remove();
-  
+
   if (isRequired && isEmpty) {
     input.classList.add('error');
     input.classList.remove('success');
-    
     const errorMsg = document.createElement('div');
     errorMsg.className = 'form-error-message show';
     errorMsg.textContent = 'This field is required';
     formGroup.appendChild(errorMsg);
-  } else if (!isEmpty) {
-    input.classList.remove('error');
-    input.classList.add('success');
-    
-    const successMsg = document.createElement('div');
-    successMsg.className = 'form-success-message show';
-    successMsg.textContent = '✓ Valid';
-    formGroup.appendChild(successMsg);
-  } else {
-    input.classList.remove('error', 'success');
+    return;
   }
+
+  // Email validation
+  if (id === 'email') {
+    const allowedDomains = ['gmail.com', 'yahoo.com', 'outlook.com', 'protonmail.com'];
+    const email = input.value.trim();
+    const emailPattern = /^[^@\s]+@([^@\s]+)$/;
+    const match = email.match(emailPattern);
+    if (!match || !allowedDomains.some(domain => email.endsWith('@' + domain))) {
+      input.classList.add('error');
+      input.classList.remove('success');
+      const errorMsg = document.createElement('div');
+      errorMsg.className = 'form-error-message show';
+      errorMsg.textContent = 'Enter a valid email (gmail, yahoo, outlook, protonmail)';
+      formGroup.appendChild(errorMsg);
+      return;
+    }
+  }
+
+  // Phone validation
+  if (id === 'phone') {
+    const phone = input.value.replace(/\D/g, '');
+    if (phone.length !== 10) {
+      input.classList.add('error');
+      input.classList.remove('success');
+      const errorMsg = document.createElement('div');
+      errorMsg.className = 'form-error-message show';
+      errorMsg.textContent = 'Enter a valid 10-digit phone number';
+      formGroup.appendChild(errorMsg);
+      return;
+    }
+  }
+
+  // If valid
+  input.classList.remove('error');
+  input.classList.add('success');
+  const successMsg = document.createElement('div');
+  successMsg.className = 'form-success-message show';
+  successMsg.textContent = '✓ Valid';
+  formGroup.appendChild(successMsg);
 }
 
 // ============================================
@@ -161,10 +177,12 @@ function initPageLoader() {
       nav.classList.add('loaded');
     }
     
-    // Trigger subpage animation on next frame for smooth entrance
-    requestAnimationFrame(() => {
-      document.body.classList.add('subpage-ready');
-    });
+    // Trigger subpage animation after a micro-delay for smooth entrance
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('subpage-ready');
+      });
+    }, 50);
     
     return;
   }
@@ -284,57 +302,99 @@ function initNavigation() {
   let lastScroll = 0;
   const scrollThreshold = 100;
   
-  // Check if this is a subpage (not homepage)
-  const isSubpage = document.body.classList.contains('subpage');
+  // Detect if this is the homepage
+  const isHomepage = window.location.pathname === '/' || 
+                     window.location.pathname.endsWith('/index.html') || 
+                     window.location.pathname.endsWith('/website/') ||
+                     window.location.href.includes('index.html') ||
+                     document.body.classList.contains('homepage');
   
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    // Add/remove background on scroll
-    if (currentScroll > scrollThreshold) {
-      nav.classList.add('nav-scrolled');
-      nav.style.background = 'rgba(5, 23, 16, 0.95)';
-      nav.style.backdropFilter = 'blur(20px)';
-    } else {
-      nav.classList.remove('nav-scrolled');
-      nav.style.background = 'transparent';
-      nav.style.backdropFilter = 'none';
-    }
-    
-    // Hide/show on scroll direction - ONLY on homepage, not subpages
-    if (!isSubpage) {
-      if (currentScroll > lastScroll && currentScroll > 500) {
-        nav.style.transform = 'translateY(-100%)';
-      } else {
-        nav.style.transform = 'translateY(0)';
-      }
-    }
-    
-    lastScroll = currentScroll;
-  }, { passive: true });
+  // Make nav sticky on subpages
+  if (!isHomepage) {
+    nav.style.position = 'sticky';
+    nav.style.top = '0';
+    nav.style.zIndex = '100';
+  }
   
-  // Active link highlighting
+  // Active link highlighting variables
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
+  let isNavScrolled = false;
+  let isNavHidden = false;
+  let tickingNav = false;
+  
+  let sectionData = [];
+  function cacheSections() {
+    sectionData = Array.from(sections).map(section => ({
+      id: section.getAttribute('id'),
+      top: section.offsetTop - 200
+    }));
+  }
+  if (sections.length > 0) {
+    cacheSections();
+    window.addEventListener('resize', cacheSections);
+  }
   
   window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      
-      if (pageYOffset >= sectionTop - 200) {
-        current = section.getAttribute('id');
-      }
-    });
-    
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
+    if (!tickingNav) {
+      window.requestAnimationFrame(() => {
+        const currentScroll = window.scrollY;
+        
+        // Add/remove background on scroll
+        if (currentScroll > scrollThreshold) {
+          if (!isNavScrolled) {
+            nav.classList.add('nav-scrolled');
+            nav.style.background = 'rgba(5, 23, 16, 0.95)';
+            nav.style.backdropFilter = 'blur(20px)';
+            isNavScrolled = true;
+          }
+        } else {
+          if (isNavScrolled) {
+            nav.classList.remove('nav-scrolled');
+            nav.style.background = 'transparent';
+            nav.style.backdropFilter = 'none';
+            isNavScrolled = false;
+          }
+        }
+        
+        // Hide/show on scroll direction - ONLY on homepage
+        if (isHomepage) {
+          if (currentScroll > lastScroll && currentScroll > 500) {
+            if (!isNavHidden) {
+              nav.style.transform = 'translateY(-100%)';
+              isNavHidden = true;
+            }
+          } else {
+            if (isNavHidden) {
+              nav.style.transform = 'translateY(0)';
+              isNavHidden = false;
+            }
+          }
+        }
+        
+        // Active link highlighting
+        if (sections.length > 0) {
+          let current = '';
+          for (let i = 0; i < sectionData.length; i++) {
+            if (currentScroll >= sectionData[i].top) {
+              current = sectionData[i].id;
+            }
+          }
+          
+          navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${current}`) {
+              if (!link.classList.contains('active')) link.classList.add('active');
+            } else {
+              if (link.classList.contains('active')) link.classList.remove('active');
+            }
+          });
+        }
+        
+        lastScroll = currentScroll;
+        tickingNav = false;
+      });
+      tickingNav = true;
+    }
   }, { passive: true });
 }
 
@@ -450,38 +510,32 @@ function initSmoothScroll() {
 // ============================================
 
 function initMobileMenu() {
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  const hamburger = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
   
   if (!hamburger || !mobileMenu) return;
   
+  const mobileNavLinks = mobileMenu.querySelectorAll('a');
+  
   function openMenu() {
-    hamburger.classList.add('open');
-    mobileMenu.classList.add('open');
-    if (mobileMenuOverlay) mobileMenuOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    mobileMenu.classList.remove('hidden');
+    const icon = hamburger.querySelector('.material-symbols-outlined');
+    if (icon) icon.textContent = 'close';
   }
   
   function closeMenu() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('open');
-    document.body.style.overflow = '';
+    mobileMenu.classList.add('hidden');
+    const icon = hamburger.querySelector('.material-symbols-outlined');
+    if (icon) icon.textContent = 'menu';
   }
   
   hamburger.addEventListener('click', () => {
-    if (mobileMenu.classList.contains('open')) {
-      closeMenu();
-    } else {
+    if (mobileMenu.classList.contains('hidden')) {
       openMenu();
+    } else {
+      closeMenu();
     }
   });
-  
-  if (mobileMenuOverlay) {
-    mobileMenuOverlay.addEventListener('click', closeMenu);
-  }
   
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', closeMenu);
@@ -489,7 +543,7 @@ function initMobileMenu() {
   
   // Close on escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
       closeMenu();
     }
   });
@@ -618,17 +672,16 @@ function initCustomCursor() {
   document.body.appendChild(cursorDot);
   document.body.appendChild(cursorOutline);
   
-  let mouseX = 0;
-  let mouseY = 0;
-  let outlineX = 0;
-  let outlineY = 0;
+  let mouseX = -100;
+  let mouseY = -100;
+  let outlineX = -100;
+  let outlineY = -100;
   
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
+    cursorDot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
   });
   
   // Smooth follow for outline
@@ -636,8 +689,7 @@ function initCustomCursor() {
     outlineX += (mouseX - outlineX) * 0.15;
     outlineY += (mouseY - outlineY) * 0.15;
     
-    cursorOutline.style.left = `${outlineX}px`;
-    cursorOutline.style.top = `${outlineY}px`;
+    cursorOutline.style.transform = `translate3d(calc(${outlineX}px - 50%), calc(${outlineY}px - 50%), 0)`;
     
     requestAnimationFrame(animateOutline);
   }

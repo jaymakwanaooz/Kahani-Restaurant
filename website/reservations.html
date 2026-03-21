@@ -151,31 +151,31 @@
                         <label class="font-label text-[10px] tracking-[0.3em] uppercase text-secondary block">Party Size</label>
                         <div class="flex flex-wrap gap-3">
                             <label class="party-size-option cursor-pointer">
-                                <input type="radio" name="party-size" value="1" class="peer hidden">
+                                <input type="radio" name="party-size" value="1" class="peer sr-only">
                                 <span class="block px-6 py-3 border border-outline-variant/30 font-label text-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-all hover:border-secondary/50">1</span>
                             </label>
                             <label class="party-size-option cursor-pointer">
-                                <input type="radio" name="party-size" value="2" class="peer hidden" checked>
+                                <input type="radio" name="party-size" value="2" class="peer sr-only" checked>
                                 <span class="block px-6 py-3 border border-outline-variant/30 font-label text-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-all hover:border-secondary/50">2</span>
                             </label>
                             <label class="party-size-option cursor-pointer">
-                                <input type="radio" name="party-size" value="3" class="peer hidden">
+                                <input type="radio" name="party-size" value="3" class="peer sr-only">
                                 <span class="block px-6 py-3 border border-outline-variant/30 font-label text-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-all hover:border-secondary/50">3</span>
                             </label>
                             <label class="party-size-option cursor-pointer">
-                                <input type="radio" name="party-size" value="4" class="peer hidden">
+                                <input type="radio" name="party-size" value="4" class="peer sr-only">
                                 <span class="block px-6 py-3 border border-outline-variant/30 font-label text-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-all hover:border-secondary/50">4</span>
                             </label>
                             <label class="party-size-option cursor-pointer">
-                                <input type="radio" name="party-size" value="5" class="peer hidden">
+                                <input type="radio" name="party-size" value="5" class="peer sr-only">
                                 <span class="block px-6 py-3 border border-outline-variant/30 font-label text-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-all hover:border-secondary/50">5</span>
                             </label>
                             <label class="party-size-option cursor-pointer">
-                                <input type="radio" name="party-size" value="6" class="peer hidden">
+                                <input type="radio" name="party-size" value="6" class="peer sr-only">
                                 <span class="block px-6 py-3 border border-outline-variant/30 font-label text-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-all hover:border-secondary/50">6</span>
                             </label>
                             <label class="party-size-option cursor-pointer">
-                                <input type="radio" name="party-size" value="7+" class="peer hidden">
+                                <input type="radio" name="party-size" value="7+" class="peer sr-only">
                                 <span class="block px-6 py-3 border border-outline-variant/30 font-label text-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-all hover:border-secondary/50">7+</span>
                             </label>
                         </div>
@@ -343,6 +343,28 @@
                 successMessage.classList.add('animate-fade-in');
             }, 1500);
         });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="../assets/css/flatpickr-kahani.css">
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        var dateInput = document.getElementById('date');
+        if (dateInput) {
+          flatpickr(dateInput, {
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            disableMobile: true,
+            allowInput: true,
+            locale: { firstDayOfWeek: 1 },
+          });
+          console.log('Flatpickr initialized!');
+        } else {
+          console.log('Date input not found!');
+        }
+      });
     </script>
 </body>
 </html>
