@@ -8,6 +8,7 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPageLoader();
   initNavigation();
   initScrollReveal();
   initParallax();
@@ -18,7 +19,141 @@ document.addEventListener('DOMContentLoaded', () => {
   initMenuAnimations();
   initCustomCursor();
   initBackToTop();
+  initHeroAnimations();
 });
+
+// ============================================
+// Page Loader Animation (Homepage Only)
+// ============================================
+
+function initPageLoader() {
+  // Only run loader on homepage
+  const isHomepage = window.location.pathname.includes('index.html') || 
+                     window.location.pathname.endsWith('/website/') ||
+                     window.location.pathname === '/' ||
+                     document.title.includes('Home');
+  
+  if (!isHomepage) {
+    // On subpages, trigger fade-up entrance animation
+    // subpage class is already on body in HTML to prevent flash
+    
+    // Add loaded class to nav immediately
+    const nav = document.querySelector('nav');
+    if (nav) {
+      nav.classList.add('loaded');
+    }
+    
+    // Trigger subpage animation on next frame for smooth entrance
+    requestAnimationFrame(() => {
+      document.body.classList.add('subpage-ready');
+    });
+    
+    return;
+  }
+  
+  // Add loading class to body
+  document.body.classList.add('loading');
+  
+  // Create loader element if it doesn't exist
+  if (!document.querySelector('.page-loader')) {
+    const loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.innerHTML = `
+      <div class="loader-logo">
+        <span class="text-4xl font-headline italic text-primary tracking-widest">Kahani</span>
+      </div>
+    `;
+    document.body.appendChild(loader);
+  }
+  
+  // Wait for all images to load
+  const images = document.querySelectorAll('img');
+  let loadedImages = 0;
+  const totalImages = images.length;
+  
+  function checkAllLoaded() {
+    loadedImages++;
+    if (loadedImages >= totalImages || totalImages === 0) {
+      // Small delay for visual effect
+      setTimeout(() => {
+        finishLoading();
+      }, 400);
+    }
+  }
+  
+  function finishLoading() {
+    const loader = document.querySelector('.page-loader');
+    const nav = document.querySelector('nav');
+    
+    if (loader) {
+      loader.classList.add('loaded');
+    }
+    
+    if (nav) {
+      nav.classList.add('loaded');
+    }
+    
+    // Remove loading class after animation
+    setTimeout(() => {
+      document.body.classList.remove('loading');
+      if (loader) {
+        loader.remove();
+      }
+    }, 800);
+  }
+  
+  // Check if images are already loaded
+  images.forEach(img => {
+    if (img.complete) {
+      checkAllLoaded();
+    } else {
+      img.addEventListener('load', checkAllLoaded);
+      img.addEventListener('error', checkAllLoaded);
+    }
+  });
+  
+  // Fallback: finish loading after max 2 seconds
+  setTimeout(finishLoading, 2000);
+}
+
+// ============================================
+// Hero Section Animations (Homepage Only)
+// ============================================
+
+function initHeroAnimations() {
+  // Only run hero animations on homepage
+  const isHomepage = window.location.pathname.includes('index.html') || 
+                     window.location.pathname.endsWith('/website/') ||
+                     window.location.pathname === '/' ||
+                     document.title.includes('Home');
+  
+  if (!isHomepage) return;
+  
+  // Add hero-bg class to hero background images
+  const heroBg = document.querySelector('section:first-of-type .absolute img');
+  if (heroBg) {
+    heroBg.classList.add('hero-bg');
+  }
+  
+  // Animate hero elements on load
+  const heroElements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-cta');
+  heroElements.forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 600 + (index * 150));
+  });
+  
+  // Add floating animation to scroll indicator
+  const scrollIndicator = document.querySelector('.animate-bounce');
+  if (scrollIndicator) {
+    scrollIndicator.classList.add('float-animation');
+  }
+}
 
 // ============================================
 // Navigation
@@ -30,6 +165,9 @@ function initNavigation() {
   
   let lastScroll = 0;
   const scrollThreshold = 100;
+  
+  // Check if this is a subpage (not homepage)
+  const isSubpage = document.body.classList.contains('subpage');
   
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
@@ -45,11 +183,13 @@ function initNavigation() {
       nav.style.backdropFilter = 'none';
     }
     
-    // Hide/show on scroll direction
-    if (currentScroll > lastScroll && currentScroll > 500) {
-      nav.style.transform = 'translateY(-100%)';
-    } else {
-      nav.style.transform = 'translateY(0)';
+    // Hide/show on scroll direction - ONLY on homepage, not subpages
+    if (!isSubpage) {
+      if (currentScroll > lastScroll && currentScroll > 500) {
+        nav.style.transform = 'translateY(-100%)';
+      } else {
+        nav.style.transform = 'translateY(0)';
+      }
     }
     
     lastScroll = currentScroll;
