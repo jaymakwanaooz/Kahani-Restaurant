@@ -8,6 +8,9 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initScrollProgressBar();
+  initPageVisibilityAPI();
+  initEnhancedFormValidation();
   initPageLoader();
   initNavigation();
   initScrollReveal();
@@ -21,6 +24,121 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initHeroAnimations();
 });
+
+// ============================================
+// Scroll Progress Bar
+// ============================================
+
+function initScrollProgressBar() {
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress-bar';
+  document.body.appendChild(progressBar);
+  
+  const scrollProgress = throttle(() => {
+    const scrolled = window.pageYOffset;
+    const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrolled / scrollMax) * 100;
+    progressBar.style.width = scrollPercent + '%';
+  }, 16); // ~60fps
+  
+  window.addEventListener('scroll', scrollProgress, { passive: true });
+}
+
+// ============================================
+// Page Visibility API
+// ============================================
+
+function initPageVisibilityAPI() {
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      // Pause animations by setting animation-play-state
+      document.querySelectorAll('[style*="animation"], [style*="transition"]').forEach(el => {
+        if (el.style.animation) {
+          el.dataset.animationState = el.style.animationPlayState || 'running';
+          el.style.animationPlayState = 'paused';
+        }
+      });
+    } else {
+      // Resume animations
+      document.querySelectorAll('[data-animation-state]').forEach(el => {
+        el.style.animationPlayState = el.dataset.animationState;
+      });
+    }
+  });
+}
+
+// ============================================
+// Enhanced Form Validation with Feedback
+// ============================================
+
+function initEnhancedFormValidation() {
+  const forms = document.querySelectorAll('form');
+  
+  forms.forEach(form => {
+    const formInputs = form.querySelectorAll('input, textarea');
+    
+    formInputs.forEach(input => {
+      // Add form-group wrapper if not exists
+      if (!input.parentElement.classList.contains('form-group')) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'form-group';
+        input.parentElement.insertBefore(wrapper, input);
+        wrapper.appendChild(input);
+      }
+      
+      // Real-time feedback
+      input.addEventListener('blur', () => {
+        validateField(input);
+      });
+      
+      input.addEventListener('input', () => {
+        if (input.classList.contains('error')) {
+          validateField(input);
+        }
+      });
+      
+      input.addEventListener('focus', () => {
+        // Clear previous messages on focus
+        const errorMsg = input.parentElement.querySelector('.form-error-message');
+        const successMsg = input.parentElement.querySelector('.form-success-message');
+        if (errorMsg) errorMsg.classList.remove('show');
+        if (successMsg) successMsg.classList.remove('show');
+      });
+    });
+  });
+}
+
+function validateField(input) {
+  const formGroup = input.parentElement;
+  const isRequired = input.hasAttribute('required');
+  const isEmpty = !input.value.trim();
+  
+  // Remove existing message elements
+  const existingError = formGroup.querySelector('.form-error-message');
+  const existingSuccess = formGroup.querySelector('.form-success-message');
+  if (existingError) existingError.remove();
+  if (existingSuccess) existingSuccess.remove();
+  
+  if (isRequired && isEmpty) {
+    input.classList.add('error');
+    input.classList.remove('success');
+    
+    const errorMsg = document.createElement('div');
+    errorMsg.className = 'form-error-message show';
+    errorMsg.textContent = 'This field is required';
+    formGroup.appendChild(errorMsg);
+  } else if (!isEmpty) {
+    input.classList.remove('error');
+    input.classList.add('success');
+    
+    const successMsg = document.createElement('div');
+    successMsg.className = 'form-success-message show';
+    successMsg.textContent = '✓ Valid';
+    formGroup.appendChild(successMsg);
+  } else {
+    input.classList.remove('error', 'success');
+  }
+}
 
 // ============================================
 // Page Loader Animation (Homepage Only)
@@ -279,6 +397,7 @@ function initParallax() {
 // ============================================
 
 function initSmoothScroll() {
+  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -296,6 +415,34 @@ function initSmoothScroll() {
       }
     });
   });
+  
+  // Page transition for internal navigation links
+  document.querySelectorAll('a:not([href^="#"]):not([href^="http"]):not([href^="/"]):not([target])').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      // Only intercept if it's an internal page link
+      if (href && !href.startsWith('http') && !href.startsWith('#')) {
+        e.preventDefault();
+        
+        // Add fade-out animation
+        document.body.classList.add('page-transition-out');
+        
+        // Navigate after animation
+        setTimeout(() => {
+          window.location.href = href;
+        }, 400);
+      }
+    });
+  });
+  
+  // Add fade-in on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('page-transition-in');
+    });
+  } else {
+    document.body.classList.add('page-transition-in');
+  }
 }
 
 // ============================================

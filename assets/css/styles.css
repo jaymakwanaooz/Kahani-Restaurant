@@ -999,3 +999,248 @@ body.subpage.subpage-ready img {
     background: rgba(233, 195, 73, 0.1);
   }
 }
+
+/* ============================================
+   Scroll Progress Indicator
+   ============================================ */
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  width: 0%;
+  transition: width 0.3s ease;
+  z-index: 10000;
+  box-shadow: 0 0 10px rgba(233, 195, 73, 0.3);
+}
+
+/* ============================================
+   Page Transition Fade
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+body.page-transition-out {
+  animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+body.page-transition-in {
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+/* ============================================
+   Enhanced Form Feedback
+   ============================================ */
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-input.error {
+  border-color: #dc2626 !important;
+  background-color: rgba(220, 38, 38, 0.05) !important;
+}
+
+.form-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+.form-input.success {
+  border-color: #059669 !important;
+  background-color: rgba(5, 150, 105, 0.05) !important;
+}
+
+.form-input.success:focus {
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1) !important;
+}
+
+.form-error-message {
+  display: none;
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.form-error-message.show {
+  display: block;
+}
+
+.form-success-message {
+  display: none;
+  color: #059669;
+  font-size: 12px;
+  margin-top: 4px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.form-success-message.show {
+  display: block;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Enhanced Button Interactions
+   ============================================ */
+
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+button:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   Enhanced Link Hover State
+   ============================================ */
+
+a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+a:hover::before {
+  width: 100%;
+}
+
+/* ============================================
+   Mobile Animation Optimization
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Reduce animation durations on mobile */
+  .page-fade-in {
+    animation-duration: 0.3s !important;
+  }
+  
+  .menu-item {
+    animation-duration: 0.4s !important;
+  }
+  
+  .reveal {
+    transition-duration: 0.6s !important;
+  }
+  
+  /* Disable parallax on mobile for better performance */
+  .parallax {
+    transform: none !important;
+  }
+  
+  /* Reduce custom cursor complexity */
+  .cursor-dot,
+  .cursor-outline {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   Smooth Scroll Behavior
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* ============================================
+   Navigation Transitions
+   ============================================ */
+
+nav {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+nav a, nav button {
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   Form Input Smooth Focus
+   ============================================ */
+
+.form-input {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   Button Smooth States
+   ============================================ */
+
+button {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   Global Scroll Smoothness
+   ============================================ */
+
+* {
+  scroll-behavior: smooth;
+}
