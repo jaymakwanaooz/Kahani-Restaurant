@@ -49,10 +49,51 @@
         }
     </script>
     
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <!-- Inline Loader Styles (must render BEFORE external CSS) -->
+    <style>
+        .page-loader {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            pointer-events: none;
+            background: #051710 !important;
+        }
+        .page-loader .loader-logo {
+            position: relative !important;
+            z-index: 10;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .page-loader.loaded {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .page-loader.loaded .loader-logo {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        body.loading { overflow: hidden; }
+        body.loading main { opacity: 0; }
+    </style>
+    
+    <!-- Custom Styles (loads after inline loader styles) -->
+    <link rel="stylesheet" href="../assets/css/styles.css?v=7">
 </head>
-<body class="bg-background text-on-surface font-body antialiased selection:bg-secondary selection:text-on-secondary">
+<body class="bg-background text-on-surface font-body antialiased selection:bg-secondary selection:text-on-secondary loading">
+    
+    <!-- Page Loader (all inline styles for guaranteed rendering) -->
+    <div id="page-loader" class="page-loader" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;display:flex;align-items:center;justify-content:center;background:#051710;pointer-events:none;">
+        <div class="loader-logo" style="position:relative;z-index:10;">
+            <span style="font-family:'Noto Serif',serif;font-size:3.5rem;font-style:italic;color:#e9c349;letter-spacing:0.15em;text-shadow:0 0 30px rgba(233,195,73,0.3);">Kahani</span>
+        </div>
+    </div>
     
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500">
@@ -109,7 +150,7 @@
             </div>
             
             <!-- Hero Content -->
-            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
+            <div class="relative text-center px-6 max-w-4xl mx-auto pt-20">
                 <span class="font-label uppercase tracking-[0.4em] text-secondary text-sm mb-6 block animate-fade-in">Est. 1994</span>
                 <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight tracking-tighter animate-slide-up">
                     The Art of <br><span class="italic text-primary">Storytelling</span>
@@ -272,7 +313,7 @@
                     class="w-full h-full object-cover"
                 >
             </div>
-            <div class="max-w-screen-xl mx-auto relative z-10">
+            <div class="max-w-screen-xl mx-auto relative">
                 <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                     <div>
                         <span class="font-label uppercase tracking-[0.2em] text-secondary text-xs mb-4 block">The Experience</span>
@@ -354,6 +395,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/main.js?v=7"></script>
 </body>
 </html>

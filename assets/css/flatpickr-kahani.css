@@ -7,6 +7,9 @@
   border-radius: 20px;
   font-family: 'Manrope', sans-serif;
   padding: 0.5rem 0.5rem 1rem 0.5rem;
+  width: auto !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
 }
 .flatpickr-months {
   background: #051710;

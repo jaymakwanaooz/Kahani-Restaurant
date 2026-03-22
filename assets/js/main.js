@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormValidation();
   initImageLazyLoading();
   initMenuAnimations();
-  initCustomCursor();
   initBackToTop();
   initHeroAnimations();
 });
@@ -167,11 +166,14 @@ function initPageLoader() {
                      window.location.pathname === '/' ||
                      document.title.includes('Home');
   
+  const existingLoader = document.querySelector('.page-loader');
+  
   if (!isHomepage) {
-    // On subpages, trigger fade-up entrance animation
-    // subpage class is already on body in HTML to prevent flash
+    // Remove loader on subpages
+    if (existingLoader) existingLoader.remove();
+    document.body.classList.remove('loading');
     
-    // Add loaded class to nav immediately
+    // On subpages, trigger fade-up entrance animation
     const nav = document.querySelector('nav');
     if (nav) {
       nav.classList.add('loaded');
@@ -187,37 +189,33 @@ function initPageLoader() {
     return;
   }
   
-  // Add loading class to body
-  document.body.classList.add('loading');
-  
-  // Create loader element if it doesn't exist
-  if (!document.querySelector('.page-loader')) {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-      <div class="loader-logo">
-        <span class="text-4xl font-headline italic text-primary tracking-widest">Kahani</span>
-      </div>
-    `;
-    document.body.appendChild(loader);
-  }
+  // Homepage: body already has 'loading' class from HTML
+  // Loader already exists in HTML
+  // Track when loading started for minimum display time
+  const loadStartTime = Date.now();
+  const MIN_LOADER_DISPLAY = 1200; // minimum ms to show loader
   
   // Wait for all images to load
   const images = document.querySelectorAll('img');
   let loadedImages = 0;
   const totalImages = images.length;
+  let finishCalled = false;
   
   function checkAllLoaded() {
     loadedImages++;
     if (loadedImages >= totalImages || totalImages === 0) {
-      // Small delay for visual effect
+      const elapsed = Date.now() - loadStartTime;
+      const remaining = Math.max(0, MIN_LOADER_DISPLAY - elapsed);
       setTimeout(() => {
         finishLoading();
-      }, 400);
+      }, remaining);
     }
   }
   
   function finishLoading() {
+    if (finishCalled) return;
+    finishCalled = true;
+    
     const loader = document.querySelector('.page-loader');
     const nav = document.querySelector('nav');
     
@@ -248,8 +246,8 @@ function initPageLoader() {
     }
   });
   
-  // Fallback: finish loading after max 2 seconds
-  setTimeout(finishLoading, 2000);
+  // Fallback: finish loading after max 3 seconds
+  setTimeout(finishLoading, 3000);
 }
 
 // ============================================
@@ -653,60 +651,6 @@ function initMenuAnimations() {
   });
   
   menuItems.forEach(item => menuObserver.observe(item));
-}
-
-// ============================================
-// Custom Cursor (Desktop Only)
-// ============================================
-
-function initCustomCursor() {
-  // Only on desktop
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-  
-  const cursorDot = document.createElement('div');
-  const cursorOutline = document.createElement('div');
-  
-  cursorDot.className = 'cursor-dot';
-  cursorOutline.className = 'cursor-outline';
-  
-  document.body.appendChild(cursorDot);
-  document.body.appendChild(cursorOutline);
-  
-  let mouseX = -100;
-  let mouseY = -100;
-  let outlineX = -100;
-  let outlineY = -100;
-  
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    
-    cursorDot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
-  });
-  
-  // Smooth follow for outline
-  function animateOutline() {
-    outlineX += (mouseX - outlineX) * 0.15;
-    outlineY += (mouseY - outlineY) * 0.15;
-    
-    cursorOutline.style.transform = `translate3d(calc(${outlineX}px - 50%), calc(${outlineY}px - 50%), 0)`;
-    
-    requestAnimationFrame(animateOutline);
-  }
-  animateOutline();
-  
-  // Hover effects
-  const hoverElements = document.querySelectorAll('a, button, .card-hover, .image-hover');
-  
-  hoverElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursorOutline.classList.add('hover');
-    });
-    
-    el.addEventListener('mouseleave', () => {
-      cursorOutline.classList.remove('hover');
-    });
-  });
 }
 
 // ============================================
