@@ -1,0 +1,94 @@
+/* ============================================
+   Kahani Restaurant - Design Tokens
+   ============================================ */
+
+:root {
+  /* Color Palette */
+  --bg-color: #051710;
+  --surface-color: #042418;
+  --surface-low: #02110b;
+  --surface-high: #0b3525;
+  --surface-container: #11231c;
+  --surface-container-high: #1c2e26;
+  --surface-container-highest: #263831;
+  
+  --primary-color: #accebc;
+  --primary-fixed: #c8ebd7;
+  
+  --secondary-color: #e9c349;
+  --secondary-container: #af8d11;
+  
+  --text-on-bg: #d2e7dc;
+  --text-on-surface: #d2e7dc;
+  --text-muted: #c1c8c2;
+  --text-on-primary: #183629;
+  --text-on-secondary: #3c2f00;
+  
+  --border-color: #8b928d;
+  --border-muted: #424844;
+
+  /* Typography */
+  --font-headline: "Noto Serif", serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Inter", "Manrope", sans-serif;
+
+  /* Spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 20px rgba(233, 195, 73, 0.2);
+
+  /* Animation Easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Transitions */
+  --transition-fast: 0.2s;
+  --transition-normal: 0.4s;
+  --transition-slow: 0.7s;
+}
+
+/* Base Body Styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-on-surface);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-low);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-high);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color);
+}
+::selection {
+  background: var(--secondary-color);
+  color: var(--bg-color);
+}

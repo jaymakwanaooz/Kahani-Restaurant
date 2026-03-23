@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu | Kahani Restaurant</title>
+  <meta name="description" content="Explore our signature editorial menu.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    /* Specific overrides for Menu Page */
+    .menu-section {
+      padding: var(--spacing-16) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .menu-category-title {
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-12);
+      text-align: center;
+      color: var(--secondary-color);
+      font-family: var(--font-headline);
+    }
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-8);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--spacing-4);
+      border-bottom: 1px dashed var(--border-muted);
+      padding-bottom: var(--spacing-2);
+    }
+    .menu-item-info {
+      flex: 1;
+    }
+    .menu-item-title {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      color: var(--text-on-surface);
+      margin-bottom: 0.25rem;
+    }
+    .menu-item-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .menu-item-price {
+      font-family: var(--font-headline);
+      color: var(--secondary-color);
+      font-size: 1.25rem;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="navbar scrolled"> <!-- Default scrolled on subpages so it doesn't stay transparent on white BG. Actually BG is dark here, but let's keep it consistent. -->
+    <div class="container-lg nav-container">
+      <div class="nav-logo-wrap">
+        <a href="index.html" class="brand-logo">Kahani</a>
+      </div>
+      
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link active">Menu</a>
+        <a href="reservations.html" class="nav-link">Reservations</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      
+      <div class="nav-cta-wrap">
+        <a href="reservations.html" class="btn btn-primary nav-cta md:flex">Book a Table</a>
+        <button id="mobile-menu-btn" class="mobile-menu-btn">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+     <a href="index.html">Home</a>
+     <a href="menu.html">Menu</a>
+     <a href="reservations.html">Reservations</a>
+     <a href="contact.html">Contact</a>
+     <a href="reservations.html" class="btn btn-primary">Book a Table</a>
+  </div>
+
+  <main style="padding-top: 120px; padding-bottom: 100px;">
+    <!-- Header -->
+    <div class="container container-sm text-center mb-16 animate-slide-up">
+      <h1 class="section-title">The <br><span>Current Curations</span></h1>
+      <p class="lead-text">Our menu changes with the seasons, honoring the availability of heritage ingredients and sustainable farming practices.</p>
+    </div>
+
+    <!-- Starters -->
+    <section class="menu-section bg-surface-container reveal">
+      <div class="container container-sm">
+        <h2 class="menu-category-title">Prelude</h2>
+        
+        <div class="menu-list">
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">Smoked Heirloom Beets</h3>
+              <p class="menu-item-desc">Whipped cashew ricotta, pistachio crumble, aged balsamic.</p>
+            </div>
+            <div class="menu-item-price">$18</div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">Charred Octopus</h3>
+              <p class="menu-item-desc">Fennel purée, preserved lemon, squid ink tuile.</p>
+            </div>
+            <div class="menu-item-price">$24</div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">Duck Liver Parfait</h3>
+              <p class="menu-item-desc">Cherry compote, house-baked brioche, flaked sea salt.</p>
+            </div>
+            <div class="menu-item-price">$22</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Course -->
+    <section class="menu-section bg-bg-color reveal reveal-delay-1">
+      <div class="container container-sm">
+        <h2 class="menu-category-title">Main Narrative</h2>
+        
+        <div class="menu-list">
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">The Silk Road Lamb</h3>
+              <p class="menu-item-desc">12-hour slow-braised shank, star anise, 24-karat gold leaf.</p>
+            </div>
+            <div class="menu-item-price">$42</div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">High Plateau Saffron Risotto</h3>
+              <p class="menu-item-desc">Grade A saffron, organic arborio, truffle-infused butter.</p>
+            </div>
+            <div class="menu-item-price">$38</div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">Coastal Black Bass</h3>
+              <p class="menu-item-desc">Pan-seared wild bass, fermented chili emulsion, pearl millet.</p>
+            </div>
+            <div class="menu-item-price">$45</div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">Heritage Duck Breast</h3>
+              <p class="menu-item-desc">Dry-aged, blackberry jus, roasted root vegetables.</p>
+            </div>
+            <div class="menu-item-price">$48</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Desserts -->
+    <section class="menu-section bg-surface-container reveal reveal-delay-2" style="border-bottom: none;">
+      <div class="container container-sm">
+        <h2 class="menu-category-title">Epilogue</h2>
+        
+        <div class="menu-list">
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">Dark Chocolate Sphere</h3>
+              <p class="menu-item-desc">Cardamom ganache, espresso ice cream, warm caramel.</p>
+            </div>
+            <div class="menu-item-price">$16</div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h3 class="menu-item-title">Rosewater Panna Cotta</h3>
+              <p class="menu-item-desc">Pistachio dust, fresh raspberries, edible flowers.</p>
+            </div>
+            <div class="menu-item-price">$14</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background-color: var(--surface-low); padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container container-lg flex flex-col md:flex-row justify-between items-center gap-8">
+      <div style="text-align: center;">
+        <span class="brand-logo" style="font-size: 1.5rem; margin-left: 0;">Kahani</span>
+        <p class="section-tag" style="margin-top: 8px; color: var(--text-muted); font-size: 0.625rem;">Signature Editorial</p>
+      </div>
+
+      <div class="flex gap-6">
+        <a href="#" class="section-tag hover:text-secondary" style="color: var(--text-muted); transition: color 0.3s;">Instagram</a>
+        <a href="#" class="section-tag hover:text-secondary" style="color: var(--text-muted); transition: color 0.3s;">Facebook</a>
+        <a href="#" class="section-tag hover:text-secondary" style="color: var(--text-muted); transition: color 0.3s;">Twitter</a>
+      </div>
+
+      <div>
+        <p class="section-tag" style="color: var(--text-muted); font-size: 0.625rem;">© 2026 Kahani Signature Editorial.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

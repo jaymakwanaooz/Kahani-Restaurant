@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Kahani Restaurant</title>
+  <meta name="description" content="Get in touch with Kahani.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .contact-grid {
+      display: grid;
+      gap: var(--spacing-12);
+    }
+    @media (min-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .contact-info-block {
+      margin-bottom: var(--spacing-8);
+    }
+    .contact-info-title {
+      font-family: var(--font-label);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      color: var(--secondary-color);
+      margin-bottom: var(--spacing-2);
+    }
+    .contact-info-text {
+      font-size: 1.125rem;
+      color: var(--text-on-surface);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="navbar scrolled">
+    <div class="container-lg nav-container">
+      <div class="nav-logo-wrap">
+        <a href="index.html" class="brand-logo">Kahani</a>
+      </div>
+      
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="reservations.html" class="nav-link">Reservations</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </div>
+      
+      <div class="nav-cta-wrap">
+        <a href="reservations.html" class="btn btn-primary nav-cta md:flex">Book a Table</a>
+        <button id="mobile-menu-btn" class="mobile-menu-btn">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+     <a href="index.html">Home</a>
+     <a href="menu.html">Menu</a>
+     <a href="reservations.html">Reservations</a>
+     <a href="contact.html">Contact</a>
+     <a href="reservations.html" class="btn btn-primary">Book a Table</a>
+  </div>
+
+  <main style="padding-top: 120px; padding-bottom: 100px;">
+    <!-- Header -->
+    <div class="container container-sm text-center mb-16 animate-slide-up">
+      <h1 class="section-title">Get In <br><span>Touch</span></h1>
+    </div>
+
+    <!-- Contact Grid -->
+    <section class="reveal">
+      <div class="container container-lg">
+        <div class="contact-grid">
+          
+          <!-- Info Column -->
+          <div class="bg-surface-container p-12" style="padding: var(--spacing-12);">
+            <div class="contact-info-block">
+              <h3 class="contact-info-title">Location</h3>
+              <p class="contact-info-text">
+                124 Heritage Lane<br>
+                Culinary District<br>
+                New York, NY 10012
+              </p>
+            </div>
+
+            <div class="contact-info-block">
+              <h3 class="contact-info-title">Hours</h3>
+              <p class="contact-info-text">
+                Wednesday to Sunday<br>
+                5:00 PM – 11:00 PM<br>
+                Closed Monday & Tuesday
+              </p>
+            </div>
+
+            <div class="contact-info-block">
+              <h3 class="contact-info-title">Contact</h3>
+              <p class="contact-info-text">
+                +1 (555) KAHANI-0<br>
+                hello@kahaniresto.com
+              </p>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+              <a href="reservations.html" class="btn btn-outline">Make a Reservation</a>
+            </div>
+          </div>
+
+          <!-- Image Column -->
+          <div class="hidden md:block">
+            <img src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?w=800&q=80" alt="Elegant dining" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background-color: var(--surface-low); padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container container-lg flex flex-col md:flex-row justify-between items-center gap-8">
+      <div style="text-align: center;">
+        <span class="brand-logo" style="font-size: 1.5rem; margin-left: 0;">Kahani</span>
+        <p class="section-tag" style="margin-top: 8px; color: var(--text-muted); font-size: 0.625rem;">Signature Editorial</p>
+      </div>
+
+      <div class="flex gap-6">
+        <a href="#" class="section-tag hover:text-secondary" style="color: var(--text-muted); transition: color 0.3s;">Instagram</a>
+        <a href="#" class="section-tag hover:text-secondary" style="color: var(--text-muted); transition: color 0.3s;">Facebook</a>
+        <a href="#" class="section-tag hover:text-secondary" style="color: var(--text-muted); transition: color 0.3s;">Twitter</a>
+      </div>
+
+      <div>
+        <p class="section-tag" style="color: var(--text-muted); font-size: 0.625rem;">© 2026 Kahani Signature Editorial.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
