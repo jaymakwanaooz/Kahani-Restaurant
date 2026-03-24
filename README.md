@@ -10,6 +10,23 @@ A premium, highly-performant static website for a luxury dining experience. Rebu
 - **Micro-Interactions:** Subtle hover states, breathing pulse animations on loading screens, and smooth scroll reveals as elements enter the viewport.
 - **Integrated Datepicker:** Fully themed `Flatpickr` integration for the reservations calendar to match the dark luxury aesthetic.
 - **Fully Responsive:** Fluid scaling on mobile, tablet, and ultra-wide monitor views.
+- **Micro-animations:** Smooth fades, slide reveals, and breathing pulse animations on loading.
+
+## 📸 Previews
+
+### Desktop View (Homepage)
+<p align="center">
+  <img src="preview/homepage1.png" width="800" alt="Homepage Hero">
+  <img src="preview/homepage2.png" width="800" alt="Our Story">
+  <img src="preview/homepage3.png" width="800" alt="Signature Dishes">
+</p>
+
+### Inner Pages
+<p align="center">
+  <img src="preview/menupage.png" width="400" alt="Menu Page">
+  <img src="preview/reservationpage.png" width="400" alt="Reservation Page">
+  <img src="preview/contactpage.png" width="400" alt="Contact Page">
+</p>
 
 ## 📁 Project Structure
 
